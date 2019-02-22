@@ -3,21 +3,33 @@ import axios from 'axios';
 class App extends Component {
 
   state = {
-    users: [],
+    zen: "",
   }
 
   componentDidMount() {
-    axios.get(`/users`)
+    this.getZen();
+  }
+
+  getZen() {
+    axios.get(`https://api.github.com/zen`)
       .then(res => {
-        const users = res.data;
-        this.setState({ users: users });
+        const zen = res.data;
+        this.setState({ zen: zen });
       })
+  }
+
+  saveZen() {
+    axios.post(`zens`, {
+      quote: this.state.zen
+    })
   }
 
   render() {
     return (
       <div>
-        list of users: {this.state.users}
+        Zen from GitHub: {this.state.zen}
+        <button onClick={this.getZen.bind(this)}>Reload</button>
+        <button onClick={this.saveZen.bind(this)}>Save Zen</button>
       </div>
     );
   }
