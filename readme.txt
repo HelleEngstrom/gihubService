@@ -1,11 +1,8 @@
 To run:
 
-npm install
+require nodejs (works with v8.10.0)
+and npm (works with v3.5.2)
 
-cd client
-npm install
+npm install in githubService, client and server
 
-cd server
-npm install
-
-npm start
+npm start in githubService
